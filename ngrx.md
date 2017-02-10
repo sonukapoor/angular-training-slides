@@ -17,14 +17,35 @@ export class AppModule {  }
 
 ---
 
+## Creating an action
+
+```ts
+export class PeopleActions {
+  static ADD_PERSON = 'ADD_PERSON';
+  static REMOVE_PERSON = 'REMOVE_PERSON';
+  addPerson(): Action {
+    return {
+          type: PeopleActions.ADD_PERSON
+      };
+  }
+  removePerson(): Action {
+      return {
+          type: PeopleActions.REMOVE_PERSON
+      };
+  }
+}
+```
+
+---
+
 ## Creating a reducer
 
 ```ts
 export const people = (state = [], action) => {
   switch (action.type) {
-    case "ADD_PERSON":
+    case PeopleActions.ADD_PERSON:
       return [ ...state, action.payload ];
-    case "REMOVE_PERSON":
+    case PeopleActions.REMOVE_PERSON:
       return state.filter(person => person.id !== action.payload);
     ...
     default:
